@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
+
+import { useAuth } from '@hooks/auth';
 
 import brandImg from '@assets/brand.png';
 
@@ -16,6 +18,19 @@ import {
 } from './styles';
 
 export function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { signIn, isLogging, forgotPassword } = useAuth();
+
+  function handleSignIn() {
+    signIn(email, password);
+  }
+
+  function handleForgotPassword() {
+    forgotPassword(email);
+  }
+
   return (
     <Container>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -30,19 +45,26 @@ export function SignIn() {
             type="secondary"
             autoCorrect={false}
             autoCapitalize='none'
+            onChangeText={setEmail}
           />
 
           <Input 
             placeholder='Senha'
             type="secondary"
             secureTextEntry
+            onChangeText={setPassword}
           />
 
-          <ForgotPasswordButton>
+          <ForgotPasswordButton onPress={handleForgotPassword}>
             <ForgotPasswordLabel>Esqueci minha senha</ForgotPasswordLabel>
           </ForgotPasswordButton>
 
-          <Button title='Entrar' type='secondary' />
+          <Button 
+            title='Entrar' 
+            type='secondary'
+            onPress={handleSignIn}
+            isLoading={isLogging}
+          />
         </Content>
       </KeyboardAvoidingView>
     </Container>
