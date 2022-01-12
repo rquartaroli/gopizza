@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "790468219161",
+    "firebase_url": "https://fir-app-6dac4.firebaseio.com",
+    "project_id": "fir-app-6dac4",
+    "storage_bucket": "fir-app-6dac4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790468219161:android:fe8b6beabfd0e3b41db588",
+        "android_client_info": {
+          "package_name": "com.example.firebaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790468219161-ige4bosa0pq83qmovs4f950l8anjm6b5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseapp",
+            "certificate_hash": "975be49f4b725c49f4ef7b2bd7d5a8cdfbc26dc7"
+          }
+        },
+        {
+          "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuuoPWkTQxCf53RznRE6tO4uQeZY3aWxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790468219161:android:8a4ef6a6552cd1571db588",
+        "android_client_info": {
+          "package_name": "com.gopizza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuuoPWkTQxCf53RznRE6tO4uQeZY3aWxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790468219161:android:afc645c6d6f6bdd51db588",
+        "android_client_info": {
+          "package_name": "com.myshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuuoPWkTQxCf53RznRE6tO4uQeZY3aWxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790468219161:android:b28b54c14d1ffe3f1db588",
+        "android_client_info": {
+          "package_name": "com.rquartaroli.gopizza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790468219161-9b33tl73h7r2a6kd69vagckghlgrifmq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rquartaroli.gopizza",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuuoPWkTQxCf53RznRE6tO4uQeZY3aWxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790468219161-87pp2nit674hj42c9nu5nt98bdt63dsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
