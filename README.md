@@ -41,7 +41,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 ## Executando o projeto
 
 Utilize o **yarn** ou o **npm install** para instalar as dependências do projeto.
-Em seguida, inicie o projeto.
+Em seguida, inicie o projeto.<br/>
 **Observação:** Necessário estar com o emulador android aberto.
 
 ```cl
