@@ -10,7 +10,13 @@ export const Container = styled.View`
 export const Header = styled(LinearGradient).attrs(({ theme }) => ({
   colors: theme.COLORS.GRADIENT
 }))`
-  padding: ${getStatusBarHeight() + 33}px 0 33px;
+  padding: ${getStatusBarHeight() + 33}px 24px 33px;
+`;
+
+export const ContentHeader = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Title = styled.Text`

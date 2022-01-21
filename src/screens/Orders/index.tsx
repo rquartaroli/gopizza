@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Alert } from 'react-native';
+import { FlatList, Alert, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
 import { useAuth } from '@hooks/auth';
@@ -10,53 +11,108 @@ import { ItemSeparator } from '@components/ItemSeparator';
 import {
   Container,
   Header,
+  ContentHeader,
   Title,
 } from './styles';
+import { ButtonBack } from '@components/ButtonBack';
+
 
 export function Orders() {
   const [orders, setOrders] = useState<OrderProps[]>([]);
 
   const { user } = useAuth();
 
+  const navigation = useNavigation();
+
   function handlePizzaDelivered(id: string) {
-    Alert.alert('Pedido', 'Confirmar que a pizza foi entregue?', [
-      {
-        text: 'Não',
-        style: 'cancel'
-      },
-      {
-        text: 'Sim',
-        onPress: () => {
-          firestore().collection('orders').doc(id).update({
-            status: 'Entregue'
-          });
+    if(user?.isAdmin) {
+      Alert.alert('Pedido', 'Confirmar que a pizza esta pronta?', [
+        {
+          text: 'Não',
+          style: 'cancel'
+        },
+        {
+          text: 'Sim',
+          onPress: () => {
+            firestore().collection('orders').doc(id).update({
+              status: 'Pronto'
+            });
+          }
         }
-      }
-    ]);
+      ]);
+    } else {
+      Alert.alert('Pedido', 'Confirmar que a pizza foi entregue?', [
+        {
+          text: 'Não',
+          style: 'cancel'
+        },
+        {
+          text: 'Sim',
+          onPress: () => {
+            firestore().collection('orders').doc(id).update({
+              status: 'Entregue'
+            });
+          }
+        }
+      ]);
+    }
+  }
+
+  function handleGoBack() {
+    navigation.goBack();
   }
 
   useEffect(() => {
-    const subscribe = firestore()
-    .collection('orders')
-    .where('waiter_id', '==', user?.id)
-    .onSnapshot(querySnapshot => {
-      const data = querySnapshot.docs.map(doc => {
-        return {
-          id: doc.id,
-          ...doc.data()
-        }
-      }) as OrderProps[];
+    if(user?.isAdmin) {
+      const subscribe = firestore()
+      .collection('orders')
+      .onSnapshot(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => {
+          return {
+            id: doc.id,
+            ...doc.data()
+          }
+        }) as OrderProps[];
 
-      setOrders(data);
-    });
+        setOrders(data);
+      });
 
-    return () => subscribe();
+      return () => subscribe();
+    }
+      const subscribe = firestore()
+      .collection('orders')
+      .where('waiter_id', '==', user?.id)
+      .onSnapshot(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => {
+          return {
+            id: doc.id,
+            ...doc.data()
+          }
+        }) as OrderProps[];
+
+        setOrders(data);
+      });
+
+      return () => subscribe();
+
   }, []);
 
   return (
     <Container>
       <Header>
-        <Title>Pedidos feitos</Title>
+        {user?.isAdmin
+        ?
+          <ContentHeader>
+            <ButtonBack 
+              onPress={handleGoBack}
+            />
+            <Title>Pedidos feitos</Title>
+            <View />
+          </ContentHeader>
+        :
+          <Title>Pedidos feitos</Title>
+        }
+        
       </Header>
 
       <FlatList 
@@ -66,7 +122,7 @@ export function Orders() {
           <OrderCard 
             index={index} 
             data={item}
-            disabled={item.status === 'Entregue'}
+            disabled={user?.isAdmin ? item.status === 'Entregue' || item.status === 'Pronto' : item.status === 'Entregue' || item.status === 'Preparando'}
             onPress={() => handlePizzaDelivered(item.id)}
           />
         )}

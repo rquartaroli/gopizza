@@ -6,6 +6,7 @@ import { useAuth } from '@hooks/auth';
 import { Home } from '@screens/Home';
 import { Product } from '@screens/Product';
 import { Order } from '@screens/Order';
+import { Orders } from '@screens/Orders';
 
 import { UserTabRoutes } from './user.tab.routes';
 
@@ -21,6 +22,7 @@ export function UserStackRoutes() {
           <Group>
             <Screen name="home" component={Home} />
             <Screen name="product" component={Product} />
+            <Screen name="orders" component={Orders} />
           </Group>
         ) : (
           <Group>

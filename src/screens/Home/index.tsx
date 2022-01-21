@@ -41,7 +41,7 @@ export function Home() {
     .collection('pizzas')
     .orderBy('name_insensitive')
     .startAt(formattedValue)
-    .endAt()
+    .endAt(`${formattedValue}\uf8ff`)
     .get()
     .then(response => {
       const data = response.docs.map(doc => {
@@ -74,6 +74,10 @@ export function Home() {
     navigation.navigate('product', { });
   }
 
+  function viewOrders() {
+    navigation.navigate('orders');
+  }
+
   useFocusEffect(
     useCallback(() => {
       fetchPizzas('');
@@ -85,8 +89,19 @@ export function Home() {
       <Header>
         <Greeting>
           <GreetingEmoji source={happyEmoji} />
-          <GreetingText>Olá, Admin</GreetingText>
+          <GreetingText>Olá, {user?.isAdmin ? 'Admin' : 'Garçom'}</GreetingText>
         </Greeting>
+
+        {user?.isAdmin 
+          &&
+          <TouchableOpacity onPress={viewOrders}>
+            <MaterialIcons
+              name="list-alt"
+              color={COLORS.TITLE}
+              size={24}
+            />
+          </TouchableOpacity>
+        }
 
         <TouchableOpacity onPress={signOut}>
           <MaterialIcons

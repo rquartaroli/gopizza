@@ -115,6 +115,47 @@ export function Product() {
     setIsLoading(false);
   }
 
+  async function handleUpdate(id: string) {
+    if(!name.trim()) {
+      return Alert.alert('Atualização', 'Informe o nome da pizza.');
+    }
+
+    if(!description.trim()) {
+      return Alert.alert('Atualização', 'Informe a descrição da pizza.');
+    }
+
+    if(!image) {
+      return Alert.alert('Atualização', 'Selecione a imagem da pizza.');
+    }
+
+    if(!priceSizeP || !priceSizeM || !priceSizeG) {
+      return Alert.alert('Atualização', 'Selecione o preço de todos os tamanhos da pizza.');
+    }
+    
+    setIsLoading(true);
+
+    firestore()
+    .collection('pizzas')
+    .doc(id)
+    .update({
+      name,
+      name_insensitive: name.toLowerCase().trim(),
+      description,
+      prices_sizes: {
+        p: priceSizeP,
+        m: priceSizeM,
+        g: priceSizeG,
+      }
+    })
+    .then(() => navigation.navigate('home'))
+    .catch(() => {
+      setIsLoading(false);
+      Alert.alert('Atualização', 'Não foi possível atualizar a pizza.');
+    })
+
+    setIsLoading(false);
+  }
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -196,7 +237,7 @@ export function Product() {
           <InputGroup>
             <InputGroupHeader>
               <Label>Descrição</Label>
-              <MaxCharacters>0 de 60 caracteres</MaxCharacters>
+              <MaxCharacters>{description.length} caracteres</MaxCharacters>
             </InputGroupHeader>
 
             <Input 
@@ -228,11 +269,18 @@ export function Product() {
           </InputGroup>
 
           {
-            !id &&
+            !id 
+            ?
             <Button 
               title="Cadastrar Pizza" 
               isLoading={isLoading}
               onPress={handleAdd}
+            />
+            :
+            <Button 
+              title="Atualizar Pizza" 
+              isLoading={isLoading}
+              onPress={() => handleUpdate(id)}
             />
           }
         </Form>
